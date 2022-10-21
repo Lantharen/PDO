@@ -10,20 +10,14 @@
 <body>
 <h2>Список пользователей</h2>
 <?php
-const DB_HOST = '127.0.0.1';
-const DB_NAME = 'site';
-const DB_USER = 'root';
-const DB_PASS = '';
-const DB_CHARSET = 'utf8mb4';
 
-$dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';dbcharset=' . DB_CHARSET;
+/**
+ * @var PDO $connection
+ */
 
-try {
-    $connection = new PDO($dsn, DB_USER, DB_PASS, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES => false,
-    ]);
+require_once 'connection.php';
+
+
     $sql = "SELECT * FROM `names`";
     $result = $connection->query($sql);
     echo "<table><tr><th>Имя</th><th>Фамилия</th><th></th></tr>";
@@ -37,10 +31,8 @@ try {
         echo "</tr>";
     }
     echo "</table>";
-}
-catch (PDOException $e) {
-    echo 'Database error: ' . $e->getMessage();
-}
+
+
 ?>
 </body>
 </html>
