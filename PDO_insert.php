@@ -8,8 +8,6 @@
 require_once 'connection.php';
 
 
-
-
 $firstName = $_POST['firstname'] ?? null;
 $lastName = $_POST['lastname'] ?? null;
 
@@ -21,7 +19,7 @@ $lastName = htmlspecialchars($lastName);
 $sql = "INSERT INTO `names` (`firstname`, `lastname`) VALUES ('$firstName', '$lastName')";
 
 $affectedRowsNumber = $connection->exec($sql);
-echo "В таблицу Users добавлено строк: $affectedRowsNumber";
+echo "В таблицу `names` добавлено строк: $affectedRowsNumber";
 
 header('Location: PDO_crud.php');
 
